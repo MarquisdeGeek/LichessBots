@@ -61,6 +61,10 @@ module.exports = function(options) {
       .fail(function(errorReport) {
         console.error(`Failure to get ${endpoint}:`);
         console.error(JSON.stringify(errorReport));
+        // Retry
+        setTimeout(function() {
+          startStreamListener(endpoint, gameId);
+        }, 10000);
       });
   }
 
